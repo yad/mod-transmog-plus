@@ -11,6 +11,7 @@ public:
         PLAYERHOOK_ON_LOGOUT,
         PLAYERHOOK_ON_DELETE,
         PLAYERHOOK_ON_EQUIP,
+        PLAYERHOOK_ON_STORE_NEW_ITEM,
         PLAYERHOOK_CAN_SELL_ITEM,
         PLAYERHOOK_ON_AFTER_BUYBACK_ITEM,
         PLAYERHOOK_ON_UNEQUIP_ITEM,
@@ -56,6 +57,14 @@ public:
         LearnAppearance(player, item);
     }
 
+    void OnPlayerStoreNewItem(Player* player, Item* item, uint32) override
+    {
+        if (!item || !item->GetTemplate() || item->GetTemplate()->Quality != ITEM_QUALITY_POOR)
+            return;
+
+        LearnAppearance(player, item);
+    }
+
     bool OnPlayerCanSellItem(Player* player, Item* item, Creature*) override
     {
         if (!item)
@@ -95,6 +104,7 @@ public:
         {
             CharacterDatabase.Execute("DELETE FROM mod_transmog_plus_appearances WHERE account_id = {} AND item_template_id = {}", accountId, itemId);
             TransmogAddon::SendCollectionUpdated(player, itemId);
+            ChatHandler(player->GetSession()).PSendSysMessage("{} {}", Transmog::GetItemLink(itemId, player->GetSession()), Tstr(player->GetSession(), LANG_TRANSMOG_APPEARANCE_REMOVED));
         }
 
         if (accountIt->second.empty())

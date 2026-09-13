@@ -66,7 +66,8 @@ enum TransmogString : uint32
     LANG_TRANSMOG_NO_APPEARANCES,
     LANG_TRANSMOG_APPEARANCE_ADDED,
     LANG_TRANSMOG_FREE,
-    LANG_TRANSMOG_EMPTY_SLOT
+    LANG_TRANSMOG_EMPTY_SLOT,
+    LANG_TRANSMOG_APPEARANCE_REMOVED
 };
 
 inline std::string const& Tstr(WorldSession* session, uint32 id)

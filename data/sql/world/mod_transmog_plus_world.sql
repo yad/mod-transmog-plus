@@ -44,4 +44,5 @@ INSERT INTO `module_string` (`module`, `id`, `string`) VALUES
 ('mod-transmog-plus', 14, 'No valid appearances found for this slot.'),
 ('mod-transmog-plus', 15, 'This item\'s appearance has been added to your collection.'),
 ('mod-transmog-plus', 16, 'Free'),
-('mod-transmog-plus', 17, 'Equipment slot is empty.');
+('mod-transmog-plus', 17, 'Equipment slot is empty.'),
+('mod-transmog-plus', 18, 'This item\'s appearance has been removed from your collection.');
