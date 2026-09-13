@@ -123,6 +123,7 @@ public:
     void LoadCollectionForAccount(uint32 accountId);
     void UnrefCollectionForAccount(uint32 accountId);
     bool AddCollectedAppearance(uint32 accountId, uint32 itemId);
+    bool RemoveCollectedAppearance(uint32 accountId, uint32 itemId);
     uint32 GetAppearanceCost(uint32 fakeEntry) const;
     // Gossip and addon adapters use one server-side mutation path.
     TransmogApplyResult ApplyAppearance(Player* player, uint8 slot, uint32 fakeEntry);

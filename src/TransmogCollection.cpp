@@ -55,3 +55,13 @@ bool Transmog::AddCollectedAppearance(uint32 accountId, uint32 itemId)
     auto result = accountIt->second.insert(itemId);
     return result.second;
 }
+
+bool Transmog::RemoveCollectedAppearance(uint32 accountId, uint32 itemId)
+{
+    std::unique_lock<std::shared_mutex> lock(collectionMutex);
+    auto accountIt = collectionCache.find(accountId);
+    if (accountIt == collectionCache.end())
+        return false;
+
+    return accountIt->second.erase(itemId) != 0;
+}
